@@ -1,0 +1,527 @@
+@font-face {
+  font-family: 'ProggyClean';
+  src: url('/ProggyClean.ttf') format('truetype'),
+    url('/ProggyVector.woff2') format('woff2');
+  font-weight: normal;
+  font-style: normal;
+  font-display: block;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  user-select: none;
+  -webkit-user-select: none;
+  scrollbar-width: thin;
+  scrollbar-color: #2b2b2b #191919;
+}
+
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: #191919;
+  border-left: 1px solid #141414;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #2b2b2b;
+  border-top: 1px solid #3d3d3d;
+  border-left: 1px solid #3d3d3d;
+  border-right: 1px solid #101010;
+  border-bottom: 1px solid #101010;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #363636;
+}
+
+html,
+body {
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  background-color: #262626;
+  border-radius: 0 !important;
+  font-family: 'ProggyClean', monospace;
+  -webkit-font-smoothing: none;
+  font-smooth: never;
+  text-rendering: geometricPrecision;
+}
+
+#app {
+  width: 100vw;
+  height: 100vh;
+  background-color: #262626;
+  border-radius: 0;
+  display: flex;
+  flex-direction: column;
+  border-top: 1px solid #424242;
+  border-left: 1px solid #424242;
+  border-right: 1px solid #141414;
+  border-bottom: 1px solid #141414;
+  padding: 2px;
+  overflow: hidden;
+  position: relative;
+}
+
+.window-body {
+  flex: 1;
+  display: flex;
+  gap: 3px;
+  padding: 3px 1px 1px 1px;
+  overflow: hidden;
+  background-color: #262626;
+  min-height: 0;
+}
+
+.main-view {
+  flex: 1;
+  height: 100%;
+  background-color: #212121;
+  border-top: 1px solid #141414;
+  border-left: 1px solid #141414;
+  border-right: 1px solid #383838;
+  border-bottom: 1px solid #383838;
+  overflow: hidden;
+  position: relative;
+  min-width: 0;
+}
+
+.tab-content {
+  width: 100%;
+  height: 100%;
+  display: none;
+  position: absolute;
+  top: 0;
+  left: 0;
+  overflow: hidden;
+  min-width: 0;
+}
+
+.tab-content.active {
+  display: flex;
+  flex-direction: row;
+}
+
+#app[data-theme="win95-classic"] {
+  background-color: #c0c0c0;
+  border-top-color: #ffffff;
+  border-left-color: #ffffff;
+  border-right-color: #000000;
+  border-bottom-color: #000000;
+}
+
+#app[data-theme="win95-classic"] .window-body {
+  background-color: #c0c0c0;
+}
+
+#app[data-theme="win95-classic"] .topbar {
+  background: #000080;
+  border-bottom-color: #808080;
+}
+
+#app[data-theme="win95-classic"] .win-btn {
+  background: #c0c0c0;
+  color: #000000;
+  border-top-color: #ffffff;
+  border-left-color: #ffffff;
+  border-right-color: #808080;
+  border-bottom-color: #808080;
+}
+
+#app[data-theme="win95-classic"] .sidebar {
+  background-color: #c0c0c0;
+  border-top-color: #808080;
+  border-left-color: #808080;
+  border-right-color: #ffffff;
+  border-bottom-color: #ffffff;
+}
+
+#app[data-theme="win95-classic"] .sidebar-tab {
+  color: #000000;
+}
+
+#app[data-theme="win95-classic"] .sidebar-tab:hover {
+  background-color: #d4d0c8;
+}
+
+#app[data-theme="win95-classic"] .sidebar-tab.active {
+  background-color: #000080;
+  color: #ffffff;
+  border-top-color: #000000;
+  border-left-color: #000000;
+  border-right-color: #ffffff;
+  border-bottom-color: #ffffff;
+}
+
+#app[data-theme="win95-classic"] .sidebar-tab.active svg {
+  fill: #ffffff !important;
+}
+
+#app[data-theme="win95-classic"] .main-view {
+  background-color: #ffffff;
+  border-top-color: #808080;
+  border-left-color: #808080;
+  border-right-color: #ffffff;
+  border-bottom-color: #ffffff;
+}
+
+#app[data-theme="win95-classic"] .editor-canvas-wrapper,
+#app[data-theme="win95-classic"] .monaco-wrapper,
+#app[data-theme="win95-classic"] .monaco-container,
+#app[data-theme="win95-classic"] .editor-empty-state {
+  background-color: #ffffff !important;
+  color: #000000 !important;
+}
+
+#app[data-theme="win95-classic"] .monaco-editor,
+#app[data-theme="win95-classic"] .monaco-editor-background,
+#app[data-theme="win95-classic"] .monaco-editor .inputarea.ime-input {
+  background-color: #ffffff !important;
+}
+
+#app[data-theme="win95-classic"] .monaco-editor .margin {
+  background-color: #ffffff !important;
+}
+
+#app[data-theme="win95-classic"] .script-tabs-bar {
+  background-color: #c0c0c0;
+  border-bottom-color: #808080;
+}
+
+#app[data-theme="win95-classic"] .script-tab {
+  background-color: #c0c0c0;
+  color: #000000;
+  border-top-color: #ffffff;
+  border-left-color: #ffffff;
+  border-right-color: #808080;
+  border-bottom-color: #808080;
+}
+
+#app[data-theme="win95-classic"] .script-tab.active {
+  background-color: #ffffff;
+  color: #000080;
+  border-top-color: #ffffff;
+  border-left-color: #ffffff;
+  border-right-color: #808080;
+  border-bottom-color: #ffffff;
+}
+
+#app[data-theme="win95-classic"] .workspace-pane {
+  background-color: #d4d0c8;
+}
+
+#app[data-theme="win95-classic"] .workspace-header {
+  background-color: #c0c0c0;
+  border-bottom-color: #808080;
+}
+
+#app[data-theme="win95-classic"] .workspace-title {
+  color: #000000;
+}
+
+#app[data-theme="win95-classic"] .workspace-item {
+  color: #000000;
+}
+
+#app[data-theme="win95-classic"] .workspace-item:hover {
+  background: #e4e0d8;
+  color: #000000;
+  border-color: #808080;
+}
+
+#app[data-theme="win95-classic"] .workspace-item.active {
+  background: #000080;
+  color: #ffffff;
+}
+
+#app[data-theme="win95-classic"] .workspace-item.active svg {
+  fill: #ffffff;
+}
+
+#app[data-theme="win95-classic"] .editor-action-bar {
+  background-color: #c0c0c0;
+  border-top-color: #ffffff;
+}
+
+#app[data-theme="win95-classic"] .action-btn {
+  background: #c0c0c0;
+  color: #000000;
+  border-top-color: #ffffff;
+  border-left-color: #ffffff;
+  border-right-color: #808080;
+  border-bottom-color: #808080;
+}
+
+#app[data-theme="win95-classic"] .action-btn:hover {
+  background-color: #d4d0c8;
+}
+
+#app[data-theme="win95-classic"] .action-btn.icon-only.active {
+  background: #000080;
+  color: #ffffff;
+}
+
+#app[data-theme="win95-classic"] .settings-dialog {
+  background-color: #c0c0c0;
+}
+
+#app[data-theme="win95-classic"] .win95-tab {
+  background-color: #c0c0c0;
+  color: #000000;
+  border-top-color: #ffffff;
+  border-left-color: #ffffff;
+  border-right-color: #808080;
+  border-bottom-color: #808080;
+}
+
+#app[data-theme="win95-classic"] .win95-tab.active {
+  background-color: #d4d0c8;
+  color: #000080;
+  font-weight: bold;
+  border-top-color: #ffffff;
+  border-left-color: #ffffff;
+  border-right-color: #808080;
+  border-bottom-color: #d4d0c8;
+}
+
+#app[data-theme="win95-classic"] .win95-sheet-body {
+  background-color: #d4d0c8;
+  border-top-color: #ffffff;
+  border-left-color: #ffffff;
+  border-right-color: #808080;
+  border-bottom-color: #808080;
+  color: #000000;
+}
+
+#app[data-theme="win95-classic"] .win95-groupbox {
+  border-top-color: #808080;
+  border-left-color: #808080;
+  border-right-color: #ffffff;
+  border-bottom-color: #ffffff;
+}
+
+#app[data-theme="win95-classic"] .win95-groupbox legend {
+  color: #000080;
+}
+
+#app[data-theme="win95-classic"] .setting-row label,
+#app[data-theme="win95-classic"] .win95-checkbox {
+  color: #000000;
+}
+
+#app[data-theme="win95-classic"] .win95-select {
+  background-color: #ffffff;
+  color: #000000 !important;
+  border-top-color: #808080;
+  border-left-color: #808080;
+  border-right-color: #ffffff;
+  border-bottom-color: #ffffff;
+}
+
+#app[data-theme="win95-classic"] .win95-select option {
+  background-color: #ffffff;
+  color: #000000;
+}
+
+#app[data-theme="win95-classic"] .win95-check-box {
+  background-color: #ffffff;
+  border-top-color: #808080;
+  border-left-color: #808080;
+  border-right-color: #ffffff;
+  border-bottom-color: #ffffff;
+}
+
+#app[data-theme="win95-classic"] .win95-checkbox input:checked + .win95-check-box::after {
+  color: #000000;
+}
+
+#app[data-theme="win95-classic"] .win95-btn {
+  background: #c0c0c0;
+  color: #000000;
+  border-top-color: #ffffff;
+  border-left-color: #ffffff;
+  border-right-color: #808080;
+  border-bottom-color: #808080;
+}
+
+#app[data-theme="win95-classic"] .console-drawer {
+  background-color: #c0c0c0;
+  border-top-color: #ffffff;
+}
+
+#app[data-theme="win95-classic"] .console-header {
+  background: #000080;
+  color: #ffffff;
+}
+
+#app[data-theme="win95-classic"] .console-title {
+  color: #ffffff;
+}
+
+#app[data-theme="win95-classic"] .console-title-accent {
+  color: #ffff00;
+}
+
+#app[data-theme="win95-classic"] .console-output {
+  background-color: #ffffff;
+  border-top-color: #808080;
+  border-left-color: #808080;
+  border-right-color: #ffffff;
+  border-bottom-color: #ffffff;
+}
+
+#app[data-theme="win95-classic"] .log-tag {
+  color: #000080;
+}
+
+#app[data-theme="win95-classic"] .log-text {
+  color: #000000;
+}
+
+#app[data-theme="win95-classic"] .scripthub-layout {
+  background-color: #d4d0c8;
+}
+
+#app[data-theme="win95-classic"] .scripthub-toolbar {
+  background-color: #c0c0c0;
+  border-bottom-color: #808080;
+}
+
+#app[data-theme="win95-classic"] .scripthub-search-box {
+  background: #ffffff;
+  border-top-color: #808080;
+  border-left-color: #808080;
+  border-right-color: #ffffff;
+  border-bottom-color: #ffffff;
+}
+
+#app[data-theme="win95-classic"] .scripthub-search-box input {
+  color: #000000;
+}
+
+#app[data-theme="win95-classic"] .scripthub-search-box input::placeholder {
+  color: #777777;
+}
+
+#app[data-theme="win95-classic"] .scripthub-search-icon {
+  color: #555555;
+}
+
+#app[data-theme="win95-classic"] .scripthub-btn {
+  background: #c0c0c0;
+  color: #000000;
+  border-top-color: #ffffff;
+  border-left-color: #ffffff;
+  border-right-color: #808080;
+  border-bottom-color: #808080;
+}
+
+#app[data-theme="win95-classic"] .scripthub-btn:hover {
+  background-color: #d4d0c8;
+}
+
+#app[data-theme="win95-classic"] .scripthub-btn:active,
+#app[data-theme="win95-classic"] .scripthub-btn.open {
+  background: #b0b0b0;
+  color: #000000;
+  border-top-color: #808080;
+  border-left-color: #808080;
+  border-right-color: #ffffff;
+  border-bottom-color: #ffffff;
+}
+
+#app[data-theme="win95-classic"] .scripthub-dropdown-menu {
+  background: #c0c0c0;
+  border-top-color: #ffffff;
+  border-left-color: #ffffff;
+  border-right-color: #808080;
+  border-bottom-color: #808080;
+}
+
+#app[data-theme="win95-classic"] .dropdown-option {
+  color: #000000;
+}
+
+#app[data-theme="win95-classic"] .dropdown-option:hover {
+  background-color: #000080;
+  color: #ffffff;
+}
+
+#app[data-theme="win95-classic"] .dropdown-option.active {
+  color: #000080;
+}
+
+#app[data-theme="win95-classic"] .dropdown-option.active:hover {
+  color: #ffffff;
+}
+
+#app[data-theme="win95-classic"] .script-card {
+  background: #c0c0c0;
+  border-top-color: #ffffff;
+  border-left-color: #ffffff;
+  border-right-color: #808080;
+  border-bottom-color: #808080;
+}
+
+#app[data-theme="win95-classic"] .script-card:hover {
+  background: #d4d0c8;
+  border-top-color: #ffffff;
+  border-left-color: #ffffff;
+  border-right-color: #808080;
+  border-bottom-color: #808080;
+}
+
+#app[data-theme="win95-classic"] .script-card-title {
+  color: #000000;
+}
+
+#app[data-theme="win95-classic"] .script-game-badge {
+  background: #ffffff;
+  color: #000080;
+  border-top-color: #808080;
+  border-left-color: #808080;
+  border-right-color: #ffffff;
+  border-bottom-color: #ffffff;
+}
+
+#app[data-theme="win95-classic"] .script-card-author,
+#app[data-theme="win95-classic"] .views-text {
+  color: #555555;
+}
+
+#app[data-theme="win95-classic"] .script-card-footer {
+  border-top-color: #808080;
+}
+
+#app[data-theme="win95-classic"] .script-card-btn {
+  background: #c0c0c0;
+  color: #000000;
+  border-top-color: #ffffff;
+  border-left-color: #ffffff;
+  border-right-color: #808080;
+  border-bottom-color: #808080;
+}
+
+#app[data-theme="win95-classic"] .script-card-btn:hover {
+  background: #d4d0c8;
+  color: #000000;
+}
+
+#app[data-theme="win95-classic"] .script-card-btn.primary {
+  background: #000080;
+  color: #ffffff;
+  border-top-color: #ffffff;
+  border-left-color: #ffffff;
+  border-right-color: #000050;
+  border-bottom-color: #000050;
+}
+
+#app[data-theme="win95-classic"] .script-card-btn.primary:hover {
+  background: #1084d0;
+  color: #ffffff;
+}
